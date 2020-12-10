@@ -301,7 +301,7 @@ router.post("/confirmation/:_id",(req,res)=>{
                   res.send(err);
                 }
                 console.log("booking information for the user successfully updated");
-                res.render("confirmation.hbs", {room:bookingObj,user: req.session.user, user:user});
+                res.render("confirmation.hbs", {room:bookingObj,user: req.session.user});
               });
 
         })

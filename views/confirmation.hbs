@@ -1,8 +1,8 @@
+{{#if user}}
 <div id="confirmation">
-    <h1>Thank you!</h1>
+    <h1>Thank you! {{user.firstname}}</h1>
     <h2>This is your booking confirmation page. See you soon!</h2>
     <br/><br/>
-{{#if user}}
 {{#if room}}
 <div id="confirmation-context">
     <div>
