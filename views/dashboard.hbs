@@ -1,0 +1,18 @@
+<div id="dashboard-container">
+    {{#if message}}
+        {{#each message}}
+        <div class="errors">
+            <p>{{this}}</p>
+        </div>
+        {{/each}}
+        <br />
+        <a href="#" id="gobacktosingup" onclick="openSignupForm();">Go back to SIGN UP</a>
+    {{/if}}
+    {{#if data}}
+        <h1>Hello, {{data.fname}}</h1>
+        <h2>Thank you for signing up!</h2>
+        <h2>Please check your email to confirm your registration!</h2>
+        <br />
+        <p><a href="/login">SIGN IN</a></p>
+    {{/if}}
+</div>

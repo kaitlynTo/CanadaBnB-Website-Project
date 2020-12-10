@@ -1,0 +1,32 @@
+<!--listing.hbs-->
+<!--Room listings that are available to book-->
+
+
+    {{#if city}}
+    <h2>{{city}} Listing</h2>
+    {{else}}
+    <h2>Canada listing</h2>
+    {{/if}}
+    {{#if hasRooms}}
+            {{#each rooms}}
+<div class="listing-wrapper">
+    <div class="list-row desktop">
+            <section class="list">
+                <a href="/roomInfo/{{this.filename}}">
+                    <img src="/photos/{{this.filename}}" alt="list1">
+                </a>
+                <div class="listinfo">
+                    <p>{{this.title}} - {{this.location}}</p>
+                    <a href="/roomInfo/{{this.filename}}">
+                        <h4>{{this.description}}</h4>
+                    </a>
+
+                    <p>${{this.price}}CAD/night</p>
+                </div>
+            </section>
+    </div>
+            {{/each}}
+        {{else}}
+        <h3>Sorry. No listings are available currently.</h3>
+        {{/if}}
+</div>

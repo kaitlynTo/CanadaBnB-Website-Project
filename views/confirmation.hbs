@@ -1,0 +1,26 @@
+<div id="confirmation">
+    <h1>Thank you!</h1>
+    <h2>This is your booking confirmation page. See you soon!</h2>
+    <br/><br/>
+{{#if user}}
+{{#if room}}
+<div id="confirmation-context">
+    <div>
+        <label class="confirmlabel">Name</label><span>{{user.firstname}} {{user.lastname}}</span>
+    </div>
+    <div>
+        <label class="confirmlabel">Email</label><span>{{user.email}}</span>
+    </div>
+    <div>
+        <label class="confirmlabel">Room#</label><span>{{room.roomID}}</span>
+    </div>
+    <div>
+        <label class="confirmlabel">Check-in</label><span>{{room.checkInDate}}</span>
+    </div>
+     <div>
+        <label class="confirmlabel">Guests#</label><span>{{room.guestNum}}</span>
+    </div>
+</div>
+{{/if}}
+{{/if}}
+</div>

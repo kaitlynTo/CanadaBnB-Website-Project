@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Travel the places around Canada | Canada BnB</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+    <!-- fontawesome -->
+    <script src="/js/script.js" defer></script>
+</head>
+
+<body>
+    <div class="container">
+
+        <header class="row">
+            <!--header-->
+            <div id="headerWrap">
+                <!--logo-->
+                <div class="header-item" id="logo">
+                    <a href="/"><img src="/img/logo.png" alt="logo"></a>
+                </div>
+                <div class="header-item" id="title">
+                    <a href="/">
+                        <h1>Canada BnB</h1>
+                    </a>
+                </div>
+                <!--navigation-->
+                <div class="header-item" id="openMenu">
+                    <a href="#" onclick="showNav()">
+                        <h1>&#9776;</h1>
+                    </a>
+                    {{#if user}}
+                    {{#if user.isAdmin}}
+                    <p>Welcome {{user.firstname}} | <a href="/adminDashboard">My page</a> | <a href="/logout">logout</a>
+                    </p>
+                    {{else}}
+                    <p>Welcome {{user.firstname}} | <a href="/userDashboard">My page</a> | <a href="/logout">logout</a>
+                    </p>
+                    {{/if}}
+                    {{else}}
+                    <a href="/login">login</a>
+                    {{/if}}
+                </div>
+                <nav class="hiddenNav">
+                    <a href="#" class="closeMenu" onclick="closeNav()">&times;</a>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/listing">listing</a></li>
+                        {{#if user}}
+                        {{#if user.isAdmin}}
+                        <li><a href="/adminDashboard">my page</a></li>
+                        {{else}}
+                        <li><a href="/userDashboard">my page</a></li>
+                        {{/if}}
+                        {{/if}}
+                        <li><a href="#" class="signin" onclick="openSigninForm();">sign in</a></li>
+                        <li><a href="#" class="signup" onclick="openSignupForm();">sign up</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <!--Signup Popup-->
+        <div class="hiddenForm signup-container">
+            <form class="hiddenForm signup" id="signup" action="/dashboard" method="POST">
+
+                <a href="#" onclick="javascript:closeSignupForm();" class="closeBtn">&times;</a>
+                <h3>Sign Up</h3>
+                <input type="email" id="email" name="email" placeholder="Email Address" onchange="clearErrorMessages()">
+
+                <input type="text" id="fname" name="fname" placeholder="First Name"
+                    onchange="clearErrorMessages(); fnameValidation();">
+
+                <input type="text" id="lname" name="lname" placeholder="Last Name"
+                    onchange="clearErrorMessages();return lnameValidation();">
+
+                <input type="password" id="password" name="password" placeholder="Password"
+                    onchange="clearErrorMessages();return pwValidation();">
+
+                <input type="password" id="passwordConfirm" name="passwordConfirm" placeholder="Confirm Password"
+                    onchange="clearErrorMessages();return pwConfirmValidation();">
+
+                <input type="text" placeholder="Birthday" onfocus="(this.type='date')" onblur="(this.type='text')"
+                    id="birthday" name="birthday" onclick="clearErrorMessages();return bdayValidation();">
+                <div id="choice">
+                    <p>*Select what you are signing for:</p>
+                    <div class="userOrOwner">
+                        <input type="radio" id="user" name="userOrOwner" value="false" checked>
+                        <label for="user">User</label>
+                        <input type="radio" id="owner" name="userOrOwner" value="true">
+                        <label for="owner">Owner</label>
+                    </div>
+                </div>
+
+                <input type="submit" value="Sign Up" onclick="clearEachErrorMessages();return validateSignUpForm()">
+
+            </form>
+        </div>
+
+
+        <!--SignIn Popup-->
+        <div class="hiddenForm signin-container">
+            <form class="hiddenForm signin" id="signin" action="/login" method="post">
+                <a href="#" onclick="javascript:closeSigninForm();" class="closeBtn">&times;</a>
+                <h3>Sign In</h3>
+
+                <input type="email" id="username" name="username" placeholder="Username is your email address"
+                    onchange="return validateSignInForm();">
+
+                <input type="password" id="signin-password" name="password" placeholder="Password"
+                    onchange="return validateSignInForm();">
+
+                <input type="submit" value="Sign In" id="signin-submit" onclick="return validateSignInForm();">
+            </form>
+        </div>
+        <main>
+            {{{body}}}
+        </main>
+
+        <div class="row">
+            <footer>
+                <div class="footer-left-col">
+                    <div class="footer-icons">
+                        <div class="icon">
+                            <i class="fab fa-instagram"></i>
+                        </div>
+                        <div class="icon">
+                            <i class="fab fa-twitter"></i>
+                        </div>
+                        <div class="icon">
+                            <i class="fab fa-facebook-f"></i>
+                        </div>
+                    </div>
+                    <div class="contacts">
+                        <p>2020 Canada BnB, Inc.</p>
+                    </div>
+                </div>
+                <div class="footer-right-col">
+                    <div class="footer-menu">
+                        <ul>
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/listing">Listing</a></li>
+                             {{#if user}}
+                        {{#if user.isAdmin}}
+                            <li><a href="/adminDashboard">My Page</a></li>
+                            {{else}}
+                            <li><a href="/userDashboard">My Page</a></li>
+                            {{/if}}
+                            {{/if}}
+                            <li><a href="#" onclick="openSigninForm();">Sign in</a></li>
+                            <li><a href="#" onclick="openSignupForm();">Sign up</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </footer>
+        </div>
+
+    </div>
+</body>
+
+</html>

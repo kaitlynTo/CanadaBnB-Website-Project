@@ -1,0 +1,73 @@
+<div class="detail-container">
+    {{#each room}}
+    <h1><i class="fas fa-home"></i> {{this.title}} - {{this.description}}</h1>
+    <p><i class="fas fa-map-marker-alt"></i> {{this.location}}</p>
+    <div class="photo-container">
+        <div class="item" id="item1"><img src="/img/bedroom-blue.jpg" alt="bedroom"></div>
+        <div class="item" id="item2"><img src="/img/kitchen2.jpg" alt="kitchen"></div>
+        <div class="item" id="item3"><img src="/img/nordic.jpg" alt="livingroom"></div>
+        <div class="item" id="item4"><img src="/photos/{{this.filename}}" alt="profilepic"></div>
+    </div>
+
+    <div class="contextBooking-wrapper">
+
+        <div class="context-container">
+            <br /><br />
+            <h3>Room Detailed Information</h3><br />
+            <ul>
+                <li>You'll have the apartement yourself.</li>
+                <li>Self check-in<br /></li>
+                <li>1 bedroom</li>
+                <li>Free Street parking</li>
+                <li>Hot tub</li>
+                <li>Hair dryer</li>
+            </ul>
+        </div>
+        <div class="bookingInfo-container">
+            <form id="bookingForm" method="post" action="/confirmation/{{this._id}}">
+                <div id="booking_price">
+                    <label for="pricePerNight">Price/night</label>$<input type="number" id="pricePerNight" name="pricePerNight" value="{{this.price}}" disabled />
+                </div>
+                <!--guests select-->
+                <div id="bookingInfo-guests">
+                    <label for="guests">guests</label>
+                    <input type="button" id="guestsDec" name="guests" onclick="decrementGuest();" value="-"
+                        style="width:1.5em;">
+                    <input type="text" id="guests" name="guests" value="0"
+                        onchange="this.setAttribute('value',this.value);calculateSubtotal();" required style="width:20px;text-align:center">
+                    <input type="button" id="guestsInc" name="guests" onclick="incrementGuest();" value="+"
+                        style="width:1.5em;">
+                </div>
+                <!--checkinout-->
+                <div class="checkIn">
+                    <label for="checkInDate">check-in</label>
+                    <input type="date" id="checkin" name="checkin" value=""
+                        onchange="this.setAttribute('value',this.value)" required>
+                </div>
+                <div class="checkOut">
+                    <label for="checkOutDate">check-out</label>
+                    <input type="date" id="checkout" name="checkout" value=""
+                        onchange="this.setAttribute('value',this.value);" required>
+                </div>
+                <!--calculated price-->
+                <div id="calculated_price">
+                    <label for="subtotal">Sub-total</label>$<input type="number" id="subtotal" name="subtotal" value="0" disabled>
+                    <br />
+                    <label for="tax">Tax</label>$<input type="number" id="tax" name="tax" value="0" disabled>
+                    <br />
+                    <label for="cleaningfee">Cleaning Fee</label>$<input type="number" id="cleaningfee" name="cleaningfee" value="20" disabled>
+                    <br />
+                    <label for="total">Total</label>$<input type="number" id="total" name="total" value="0" disabled>
+                </div>
+                <!--total check-->
+                <div>
+                <input type="button" value="Total check" id="pricecheck" onclick="calculateSubtotal();"/>
+                <!--Booking Btn-->
+                <input type="submit" id="bookBtn" />
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+{{/each}}

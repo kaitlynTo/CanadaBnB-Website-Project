@@ -1,0 +1,87 @@
+<div class="row searchBooking">
+    <button class="btn" id="searchBtn">Discover
+        <i class="fas fa-search"></i>
+    </button>
+</div>
+
+<div
+    class="hiddenForm searchForm">
+    <!--closeBtn on the TopRight-->
+    <div class="row">
+        <a href="#" id="close" onclick="closeForm()">&times;</a>
+    </div>
+    <form
+        class="form-container" action="/listing" method="post">
+        <!--city select-->
+        <div class="row">
+            <label for="city">city</label>
+            <select id="city" name="city" required>
+                <option value="" disabled selected>Which city are you going?</option>
+                <option value="toronto">Toronto, Ontario</option>
+                <option value="northyork">North York, Ontario</option>
+                <option value="ottawa">Ottawa, Ontario</option>
+                <option value="vancouver">Vancouver, Alberta</option>
+            </select>
+        </div>
+        <!--check-in-out calendar-->
+        <div class="row checkDate">
+            <div class="checkIn">
+                <label for="checkInDate">check-in</label>
+                <input type="date" id="checkin" name="checkin" value="" onchange="this.setAttribute('value',this.value)" required>
+            </div>
+            <div class="checkOut">
+                <label for="checkOutDate">check-out</label>
+                <input type="date" id="checkout" name="checkout" value="" onchange="this.setAttribute('value',this.value)" required>
+            </div>
+        </div>
+        <!--guests select-->
+        <div class="row guests">
+            <label for="guests">guests</label>
+            <input type="button" id="guestsDec" name="guests" onclick="decrementGuest()" value="-">
+            <input type="text" id="guests" name="guests" value="0" onchange="this.setAttribute('value',this.value)" required>
+            <input type="button" id="guestsInc" name="guests" onclick="incrementGuest()" value="+">
+        </div>
+        <!--search button-->
+        <div class="row searchBtn">
+            <input type="submit" id="search" name="search" value="Search">
+        </div>
+    </form>
+</div>
+
+<div class="desktop-in-one-row">
+    <div class="promotion">
+        <div class="promotion-box-1">
+            <h3>If you sign up now, you get
+                <u>20%</u>
+                discount coupon!</h3>
+            <button onclick="openSignupForm()">join now</a>
+        </div>
+        <div class="promotion-box-2">
+            <img src="/img/sale.jpg" alt="sale">
+        </div>
+    </div>
+    <div class="informations">
+        <div class="information1">
+            <div class="information1-box-1">
+                <img src="/img/toronto.jpg" alt="toronto">
+            </div>
+            <div class="information1-box-2">
+                <div class="text-contents">
+                    <h3>Your perfect travel mate!</h3>
+                    <p>
+                        We are
+                        <span>"Easy, Fast and Reliable"</span>                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="information2">
+            <h3>How to be a great guest!</h3>
+            <iframe
+            src="https://www.youtube.com/embed/OOUib0u27Qs" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+</div>
